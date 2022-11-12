@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Курс валют</h1>
+  <div class="wrapper">
+    <div *ngIf="(loading$ | async)">
+      <app-loader></app-loader>
+    </div>
+    <div *ngIf="(loaded$ | async)">
+      <div class="inner" *ngIf="rates$ | async as rates">
+        <div class="rates row" *ngFor="let rate of rates">
+          <span class="col-4">{{rate.cc}}</span>
+          <span class="col-4">{{rate.txt}}</span>
+          <span class="col-4">{{rate.rate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

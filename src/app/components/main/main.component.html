@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Конвертер валют</h2>
+  <div class="wrapper">
+    <div *ngIf="(loading$ | async)">
+      <app-loader></app-loader>
+    </div>
+    <div class="converter row" *ngIf="(loaded$ | async)">
+      <div class="rate col-5">
+        <select class="select" *ngIf="rates$ | async as rates" (change)="selectFirstRate($event)">
+          <option>UAH Гривня</option>
+          <option *ngFor="let rate of rates">{{rate.cc}} {{rate.txt}}</option>
+        </select>
+        <input class="input" type="number" value={{firstNum}} (input)="onFirstChange($event)">
+      </div>
+      <div class="arrow col-2"><img src="assets/arrow.jpg" alt=""></div>
+      <div class="rate col-5">
+        <select class="select" *ngIf="rates$ | async as rates" (change)="selectSecondRate($event)">
+          <option>UAH Гривня</option>
+          <option *ngFor="let rate of rates">{{rate.cc}} {{rate.txt}}</option>
+        </select>
+        <input class="input" type="number" value={{secondNum}} (input)="onSecondChange($event)">
+      </div>
+    </div>
+  </div>
+</div>
